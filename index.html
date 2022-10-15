@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+    body {
+      display: grid;
+      width: 100%;
+      place-items: center;
+      counter-reset: score;
+    }
+    input:checked {
+      counter-increment: score;
+    }
+    .score {
+      display: inline-block;
+      position: absolute;
+      left: 50%;
+      transform: translate(-50%, 0);
+    }
+    .score::after {
+      content: counter(score);
+    }
+    input[type="checkbox"] {
+      position: absolute;
+      cursor: pointer;
+      appearance: none;
+      z-index: 4;
+      width: 100%;
+      height: 80px;
+      border-radius: 50%;
+    }
+    .phone {
+      position: relative;
+      overflow: hidden;
+      border: 8px solid black;
+      border-radius: 40px;
+      width: 300px;
+      height: 600px;
+      background: rgb(21, 130, 202);
+      box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.3);
+    }
+    .layer1 {
+      position: absolute;
+      z-index: 1;
+      height: 450px;
+      width: 80px;
+      bottom: 0;
+      right: 60px;
+      animation: layer1 5s ease-in-out 0.5s infinite;
+    }
+    @keyframes layer1 {
+      0% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(100px);
+      }
+      100% {
+        transform: translateY(0);
+      }
+    }
+    .layer2 {
+      position: absolute;
+      z-index: 2;
+      height: 450px;
+      width: 80px;
+      bottom: 0;
+      left: 60px;
+      animation: layer2 4s ease-in-out 0.6s infinite;
+    }
+    @keyframes layer2 {
+      0% {
+        transform: translateY(0);
+      }
+      6% {
+        transform: translateY(100px);
+      }
+      100% {
+        transform: translateY(0);
+      }
+    }
+    .layer3 {
+      position: absolute;
+      z-index: 3;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      margin: 0 auto;
+      width: 220px;
+      height: 400px;
+      background: linear-gradient(135deg, #d5effc 25%, transparent 25%) -50px -40px,
+        linear-gradient(-135deg, #d5effc 25%, transparent 25%) -50px -40px,
+        linear-gradient(45deg, #d5effc 25%, transparent 25%),
+        linear-gradient(-45deg, #d5effc 25%, transparent 25%);
+      background-size: 40px 300px;
+    }
+    .layer4 {
+      position: absolute;
+      z-index: 4;
+      height: 350px;
+      width: 80px;
+      bottom: 0;
+      left: 25px;
+      animation: layer5 8s linear 0.4s infinite;
+    }
+    @keyframes layer4 {
+      0% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(100px);
+      }
+      100% {
+        transform: translateY(0);
+      }
+    }
+    .layer5 {
+      position: absolute;
+      z-index: 5;
+      left: 0;
+      bottom: 0;
+      width: 180px;
+      height: 300px;
+      background: linear-gradient(135deg, #d5effc 25%, transparent 25%) -50px -40px,
+        linear-gradient(-135deg, #d5effc 25%, transparent 25%) -50px -40px,
+        linear-gradient(45deg, #d5effc 25%, transparent 25%),
+        linear-gradient(-45deg, #d5effc 25%, transparent 25%);
+      background-size: 40px 300px;
+    }
+    .layer6 {
+      position: absolute;
+      z-index: 6;
+      height: 250px;
+      width: 80px;
+      bottom: 0;
+      right: 20px;
+      animation: layer6 3s ease-in 0.6s infinite;
+    }
+    @keyframes layer6 {
+      0% {
+        transform: translateY(0);
+      }
+      25% {
+        transform: translateY(100px);
+      }
+      100% {
+        transform: translateY(0);
+      }
+    }
+    .layer7 {
+      position: absolute;
+      z-index: 7;
+      right: 0;
+      bottom: 0;
+      width: 180px;
+      height: 200px;
+      background: linear-gradient(135deg, #d5effc 25%, transparent 25%) -50px 0,
+        linear-gradient(-135deg, #d5effc 25%, transparent 25%) -50px 0,
+        linear-gradient(45deg, #d5effc 25%, transparent 25%),
+        linear-gradient(-45deg, #d5effc 25%, transparent 25%);
+      background-size: 40px 150px;
+    }
+    .layer8 {
+      position: absolute;
+      z-index: 8;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      margin: 0 auto;
+      width: 150px;
+      height: 120px;
+      background-color: #1e1ebe;
+      border-radius: 12px 12px 0 0;
+    }
+    .layer9 {
+      position: absolute;
+      z-index: 9;
+      left: 0;
+      bottom: 0;
+      width: 100px;
+      height: 100px;
+      background-color: #1e1ebe;
+      border-radius: 12px 12px 0 0;
+    }
+    .layer10 {
+      position: absolute;
+      z-index: 10;
+      right: 0;
+      bottom: 0;
+      width: 100px;
+      height: 100px;
+      background-color: #1e1ebe;
+      border-radius: 12px 0 0 0;
+    }
+    .floor {
+      background-color: #72aaca;
+      border-radius: 10%;
+      box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.3);
+    }
+    .outer-head {
+      background: black;
+      width: 70px;
+      height: 80px;
+      position: absolute;
+      margin: 0 auto;
+      left: 0;
+      right: 0;
+      border-radius: 50%;
+      z-index: 0;
+    }
+    .inner-head {
+      background: rgb(230, 225, 225);
+      width: 90%;
+      height: 80%;
+      position: absolute;
+      margin: 0 auto;
+      left: 0;
+      right: 0;
+      top: 5px;
+      border-radius: 50%;
+    }
+    .eye {
+      background: rgb(0, 0, 0);
+      width: 10px;
+      height: 10px;
+      position: absolute;
+      border-radius: 50%;
+      animation-name: blink;
+      animation-duration: 2s;
+      animation-iteration-count: infinite;
+    }
+    @keyframes blink {
+      from {
+        height: 10px;
+      }
+      25% {
+        height: 5px;
+        transform: translate(0, 2.5px);
+      }
+      50% {
+        height: 1px;
+        transform: translate(0, 4.5px);
+      }
+      top {
+        height: 10px;
+      }
+    }
+    .left-eye {
+      left: 15px;
+      top: 15px;
+    }
+    .right-eye {
+      right: 15px;
+      top: 15px;
+    }
+    .shadow-left-eye {
+      background: rgb(255, 255, 255);
+      width: 5px;
+      height: 5px;
+      left: 1px;
+      top: 1px;
+      position: absolute;
+      border-radius: 50%;
+
+      animation-name: blinkShadow;
+      animation-duration: 2s;
+      animation-iteration-count: infinite;
+    }
+    .shadow-right-eye {
+      background: rgb(255, 255, 255);
+      width: 5px;
+      height: 5px;
+      left: 1px;
+      top: 1px;
+      position: absolute;
+      border-radius: 50%;
+
+      animation-name: blinkShadow;
+      animation-duration: 2s;
+      animation-iteration-count: infinite;
+    }
+    @keyframes blinkShadow {
+      from {
+        height: 5px;
+      }
+      25% {
+        height: 2px;
+      }
+      40% {
+        height: 0px;
+      }
+      to {
+        height: 5px;
+      }
+    }
+    .mouth {
+      position: absolute;
+      margin: 0 auto;
+      left: 0;
+      right: 0;
+      top: 30px;
+      width: 15px;
+      height: 10px;
+    }
+    .upper-mouth {
+      position: absolute;
+      width: 100%;
+      height: 50%;
+      background-color: #ffa500;
+      border-radius: 50%;
+    }
+    .lower-mouth {
+      position: absolute;
+      margin: 0 auto;
+      left: 0%;
+      right: 0;
+      width: 80%;
+      height: 50%;
+      top: 25%;
+      background-color: #ffa500;
+      border-radius: 50%;
+    }
+  </style>
+  <body>
+    <div class="phone">
+      <div class="layer1">
+        <input type="checkbox" />
+        <div class="outer-head">
+          <div class="inner-head">
+            <div class="eye left-eye">
+              <div class="shadow-left-eye"></div>
+            </div>
+            <div class="eye right-eye">
+              <div class="shadow-right-eye"></div>
+            </div>
+            <div class="mouth">
+              <div class="upper-mouth"></div>
+              <div class="lower-mouth"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="layer2">
+        <input type="checkbox" />
+        <div class="outer-head">
+          <div class="inner-head">
+            <div class="eye left-eye">
+              <div class="shadow-left-eye"></div>
+            </div>
+            <div class="eye right-eye">
+              <div class="shadow-right-eye"></div>
+            </div>
+            <div class="mouth">
+              <div class="upper-mouth"></div>
+              <div class="lower-mouth"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="layer3 floor"></div>
+      <div class="layer4">
+        <input type="checkbox" />
+        <div class="outer-head">
+          <div class="inner-head">
+            <div class="eye left-eye">
+              <div class="shadow-left-eye"></div>
+            </div>
+            <div class="eye right-eye">
+              <div class="shadow-right-eye"></div>
+            </div>
+            <div class="mouth">
+              <div class="upper-mouth"></div>
+              <div class="lower-mouth"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="layer5 floor"></div>
+      <div class="layer6">
+        <input type="checkbox" />
+        <div class="outer-head">
+          <div class="inner-head">
+            <div class="eye left-eye">
+              <div class="shadow-left-eye"></div>
+            </div>
+            <div class="eye right-eye">
+              <div class="shadow-right-eye"></div>
+            </div>
+            <div class="mouth">
+              <div class="upper-mouth"></div>
+              <div class="lower-mouth"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="layer7 floor"></div>
+      <div class="layer8"></div>
+      <div class="layer9"></div>
+      <div class="layer10"></div>
+      <h3 class="score">Score:</h3>
+    </div>
+  </body>
+</html>
